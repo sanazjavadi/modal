@@ -1,0 +1,69 @@
+body {
+  font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
+    Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  background-image: hsl(234, 38%, 95%);
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.modal {
+  height: auto;
+  min-height: 30vh;
+  width: 100vw;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  border: 1px solid gray;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    .closeBtn {
+      padding-left: 1rem;
+      font-size: 20px;
+
+      cursor: pointer;
+    }
+    .headerContent {
+      padding-right: 1rem;
+      font-size: 14px;
+    }
+  }
+  .body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.btn {
+  background-color: hsl(245, 43%, 28%);
+  color: white;
+  padding: 1em 1.5em;
+  border-radius: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin-top: 1rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: #000;
+  opacity: 0.75;
+}
