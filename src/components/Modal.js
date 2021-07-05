@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
-import { Button } from "@material-ui/core";
 import Controller from "../service/controller";
 import { History } from "../index";
 import { v4 as uuidv4 } from "uuid";
@@ -18,39 +17,33 @@ export default function Modal({
   const [ID] = useState(uuidv4().split("-")[0]);
   const location = useLocation();
 
-  const queryParams = new URLSearchParams(location.search);
-
+  const queryParams = useMemo(
+    () => new URLSearchParams(location.search),
+    [location.search]
+  );
   useEffect(() => {
-    if (queryParams) {
+    if (!open && queryParams.has("&modal=")) {
       queryParams.delete("?");
       History.replace({
         search: "",
       });
     }
-  }, []);
-  useEffect(() => {
-    History.listen((data, action) => {
-      if (action === "POP") {
-        if (Controller.instance.currentModal === ID) {
-          hideModal();
-        }
-      }
-    });
-  });
+  }, [queryParams]);
 
   useEffect(() => {
     if (open && queryParams) {
       Controller.instance.addModal(ID);
       History.push({
-        search: `modal=${Controller.instance.getModalList().join("&")}`,
+        search: `modal=${Controller.instance.getModalList().join("&modal=")}`,
       });
     } else if (!open && queryParams) {
       History.goBack();
+      Controller.instance.emptyModal();
     } else {
       if (Controller.instance.currentModal === ID) {
         Controller.instance.removeModal(ID);
         History.replace({
-          search: `modal=${Controller.instance.getModalList().join("&")}`,
+          search: `modal=${Controller.instance.getModalList().join("&modal=")}`,
         });
       }
     }
@@ -77,7 +70,9 @@ export default function Modal({
         }`}
       >
         <div className={styles.header}>
-          <Button onClick={onClose}> X </Button>
+          <button onClick={onClose} className={styles.closeBtn}>
+            X
+          </button>
           <p className={styles.headerContent}>{header}</p>
         </div>
         <div className={styles.body}>{children}</div>

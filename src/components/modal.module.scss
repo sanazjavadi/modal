@@ -12,9 +12,8 @@
     justify-content: space-between;
     border-bottom: 1px solid gray;
     .closeBtn {
-      padding-left: 1rem;
       font-size: 20px;
-
+      margin-left: 1rem;
       cursor: pointer;
     }
     .headerContent {
@@ -37,7 +36,6 @@
     transition: all 0.5s ease-out;
   }
 }
-
 .modal-overlay {
   position: fixed;
   top: 0;

@@ -21,4 +21,8 @@ export default class Controller {
   current() {
     return this.currentModal;
   }
+
+  emptyModal() {
+    this.modalList = [];
+  }
 }
