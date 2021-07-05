@@ -1,19 +1,25 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, FC } from "react";
 
-import Controller from "../service/controller";
+import Controller from "../service/controller.js";
 import { History } from "../index";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./modal.module.scss";
 import { useLocation } from "react-router-dom";
 import "../styles/styles.scss";
 
-export default function Modal({
+type slideModalProps = {
+  open: boolean;
+  hideModal: () => void;
+  header: string;
+  fullHeight?: boolean;
+};
+const Modal: FC<slideModalProps> = ({
   children,
   open,
   hideModal,
   header,
   fullHeight,
-}) {
+}) => {
   const [ID] = useState(uuidv4().split("-")[0]);
   const location = useLocation();
 
@@ -59,9 +65,8 @@ export default function Modal({
   return (
     <>
       <div
-        className={open && styles["modal-overlay"]}
+        className={open ? styles["modal-overlay"] : ""}
         onClick={onClose}
-        type="button"
         tabIndex={-1}
       ></div>
       <div
@@ -79,4 +84,6 @@ export default function Modal({
       </div>
     </>
   );
-}
+};
+
+export default Modal;
