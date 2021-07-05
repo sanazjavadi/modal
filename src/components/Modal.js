@@ -28,7 +28,7 @@ export default function Modal({
         search: "",
       });
     }
-  });
+  }, []);
   useEffect(() => {
     History.listen((data, action) => {
       if (action === "POP") {
@@ -56,7 +56,6 @@ export default function Modal({
   }, [open]);
 
   function onClose() {
-    History.goBack();
     hideModal();
     History.replace({
       search: "",
