@@ -8,8 +8,8 @@ export default function App() {
   const [visible1, showModal1, hideModal1] = useModal(false);
 
   return (
-    <div>
-      <button className="btn" type="button" onClick={showModal}>
+    <div className="container">
+      <button className="btn " type="button" onClick={showModal}>
         Click to open Modal
       </button>
       <Modal open={visible} hideModal={hideModal} header={"header"}>

@@ -22,6 +22,11 @@ body {
   border: none;
   margin-top: 1rem;
 }
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .slide-appear {
   opacity: 0;
   transform: translateX(-500px) scale(0.6);
