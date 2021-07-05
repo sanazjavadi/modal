@@ -11,40 +11,6 @@ body {
   font-family: sans-serif;
   text-align: center;
 }
-
-.modal {
-  height: auto;
-  min-height: 30vh;
-  width: 100vw;
-  background-color: white;
-  position: fixed;
-  bottom: 0;
-  z-index: 1;
-  border: 1px solid gray;
-
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid gray;
-    .closeBtn {
-      padding-left: 1rem;
-      font-size: 20px;
-
-      cursor: pointer;
-    }
-    .headerContent {
-      padding-right: 1rem;
-      font-size: 14px;
-    }
-  }
-  .body {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 .btn {
   background-color: hsl(245, 43%, 28%);
   color: white;
@@ -56,14 +22,34 @@ body {
   border: none;
   margin-top: 1rem;
 }
+.slide-appear {
+  opacity: 0;
+  transform: translateX(-500px) scale(0.6);
+}
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background-color: #000;
-  opacity: 0.75;
+.slide-appear-done {
+  opacity: 1;
+  transition: all 400ms;
+  transform: translateX(0) scale(1);
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: translateX(-500px) scale(0.3);
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transition: all 400ms ease-out;
+  transform: translateX(0) scale(1);
+}
+
+.slide-exit {
+  opacity: 1;
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transition: all 400ms ease-in;
+  transform: translateX(500px) scale(0.3);
 }
