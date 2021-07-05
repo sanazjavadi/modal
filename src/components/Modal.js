@@ -22,7 +22,7 @@ export default function Modal({
   const queryParams = new URLSearchParams(location.search);
 
   useEffect(() => {
-    if (queryParams) {
+    if (queryParams && !open) {
       queryParams.delete("?");
       History.replace({
         search: "",
@@ -40,11 +40,13 @@ export default function Modal({
   });
 
   useEffect(() => {
-    if (open) {
+    if (open && !queryParams.has("modal")) {
       Controller.instance.addModal(ID);
       History.push({
         search: `modal=${Controller.instance.getModalList().join("&")}`,
       });
+    } else if (!open && queryParams) {
+      History.goBack();
     } else {
       if (Controller.instance.currentModal === ID) {
         Controller.instance.removeModal(ID);
